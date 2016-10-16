@@ -1,1 +1,3 @@
 # CellularAutomaton
+
+More info soon
