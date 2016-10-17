@@ -45,8 +45,40 @@ namespace CellularAutomaton
                 Console.WriteLine();
             }
 
+            //position variables allow us to chcek in which part of array the cell is. 
+            //For example cell from left top corner should have a different type of feeding then a cell from the center of array
+            int x_position = 0;
+            int y_position = 0;
+            //TODO feeding loop here
 
             Console.ReadLine();
+        }
+
+        //function checking how much food is available for the cell
+        static void Feeding(Cell[,] feedingArray, int x_position, int y_position)
+        {
+            //how much food is available for the cell?
+            int food = 0;
+            //how many neighbors the cell have? 
+            int neighbors = 0;
+
+            for (int i = x_position - 1; i <= x_position + 1; i++)
+            {
+                for (int j = y_position - 1; j <= y_position + 1; j++)
+                {
+                    if (i != x_position || j != y_position)
+                    {
+                        try
+                        {
+                            if (feedingArray[i, j].isAlive) neighbors++;
+                        }
+                        catch
+                        {
+                            continue;
+                        }
+                    }
+                }
+            }
         }
     }
 }
