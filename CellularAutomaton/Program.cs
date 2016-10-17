@@ -54,7 +54,7 @@ namespace CellularAutomaton
             Console.ReadLine();
         }
 
-        //function checking how much food is available for the cell
+        //function checks how much food is available for the cell
         static void Feeding(Cell[,] feedingArray, int x_position, int y_position)
         {
             //how much food is available for the cell?
