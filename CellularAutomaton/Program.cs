@@ -13,6 +13,7 @@ namespace CellularAutomaton
         static void Main(string[] args)
         {
             CellEnvironment environment = new CellEnvironment();
+            int loop = 0;
 
             //TODO let the user choose the array size
             //initialize cellArray
@@ -41,7 +42,8 @@ namespace CellularAutomaton
             cellArray[5, 4].isAlive = true;
             cellArray[5, 4].hunger = 1;
 
-            //TEST - cellArray print
+            //Generation 0 cellArray print
+            Console.WriteLine("Generation 0:");
             for (int i = 0; i < cellArray.GetLength(0); i++)
             {
                 for (int j = 0; j < cellArray.GetLength(1); j++)
@@ -60,8 +62,10 @@ namespace CellularAutomaton
             Console.WriteLine();
 
             //MAIN LOOP -------------------------------------------------------------------
+            string nextIteration = "n";
             do
             {
+                loop++;
                 //deep cloning our array of cells
                 bool[,] auxiliaryArray = new bool[10, 10];
                 for (int i = 0; i < cellArray.GetLength(0); i++)
@@ -85,6 +89,7 @@ namespace CellularAutomaton
                 }
 
                 //cellArray print
+                Console.WriteLine("\nGeneration {0}:", loop);
                 for (int i = 0; i < cellArray.GetLength(0); i++)
                 {
                     for (int j = 0; j < cellArray.GetLength(1); j++)
@@ -100,7 +105,11 @@ namespace CellularAutomaton
                     }
                     Console.WriteLine();
                 }
-            } while (false);
+
+                Console.WriteLine("\nDo you want next generation? If yes, press <Y> and <Enter>. Otherwise click any key and <Enter>");
+                nextIteration = Console.ReadLine();
+                nextIteration = nextIteration.ToUpper();
+            } while (nextIteration == "Y");
             //END OF MAIN LOOP ---------------------------------------------------------------
 
             Console.ReadLine();
