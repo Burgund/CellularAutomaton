@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace CellularAutomaton
 {
+    //main Program class with Main function and program main loop
+    //this is the kernel of whole program
     class Program
     {
         static void Main(string[] args)
