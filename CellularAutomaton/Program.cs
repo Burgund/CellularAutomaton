@@ -12,12 +12,19 @@ namespace CellularAutomaton
     {
         static void Main(string[] args)
         {
+            //local variables
             CellEnvironment environment = new CellEnvironment();
             int loop = 0;
 
-            //TODO let the user choose the array size
-            //initialize cellArray
-            Cell[,] cellArray = new Cell[10, 10];
+            //setting up array size
+            Console.WriteLine("Choose the array size. Write an integer between 8 and 80 and push <enter>.");
+            Console.WriteLine("If you want default size (10) just push<enter>.\nNote: You may want to set up your console window size.");
+            int arraySize = 0;
+            arraySize = Int32.Parse(Console.ReadLine());
+
+            if (arraySize < 8 || arraySize > 80) arraySize = 10;
+
+            Cell[,] cellArray = new Cell[arraySize, arraySize];
             for (int i = 0; i < cellArray.GetLength(0); i++)
             {
                 for (int j = 0; j < cellArray.GetLength(1); j++)
@@ -67,7 +74,7 @@ namespace CellularAutomaton
             {
                 loop++;
                 //deep cloning our array of cells
-                bool[,] auxiliaryArray = new bool[10, 10];
+                bool[,] auxiliaryArray = new bool[arraySize, arraySize];
                 for (int i = 0; i < cellArray.GetLength(0); i++)
                 {
                     for (int j = 0; j < cellArray.GetLength(1); j++)
