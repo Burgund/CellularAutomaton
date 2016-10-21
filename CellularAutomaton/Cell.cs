@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace CellularAutomaton
 {
+    //this class define the objects of program main array
+    //objects of Cell class (cells) are our main entities
     class Cell
     {
         //hunger variable determines when the cell will die
