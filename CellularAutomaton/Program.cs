@@ -36,20 +36,20 @@ namespace CellularAutomaton
             }
 
             //TODO let the user choose which cells should be alive when program starts
-            cellArray[4, 3].isAlive = true;
-            cellArray[4, 3].hunger = 1;
+            cellArray[4, 3].IsAlive = true;
+            cellArray[4, 3].Hunger = 1;
 
-            cellArray[4, 4].isAlive = true;
-            cellArray[4, 4].hunger = 1;
+            cellArray[4, 4].IsAlive = true;
+            cellArray[4, 4].Hunger = 1;
 
-            cellArray[4, 5].isAlive = true;
-            cellArray[4, 5].hunger = 1;
+            cellArray[4, 5].IsAlive = true;
+            cellArray[4, 5].Hunger = 1;
 
-            cellArray[3, 4].isAlive = true;
-            cellArray[3, 4].hunger = 1;
+            cellArray[3, 4].IsAlive = true;
+            cellArray[3, 4].Hunger = 1;
 
-            cellArray[5, 4].isAlive = true;
-            cellArray[5, 4].hunger = 1;
+            cellArray[5, 4].IsAlive = true;
+            cellArray[5, 4].Hunger = 1;
 
             //Generation 0 cellArray print
             Console.WriteLine("Generation 0:");
@@ -57,7 +57,7 @@ namespace CellularAutomaton
             {
                 for (int j = 0; j < cellArray.GetLength(1); j++)
                 {
-                    if (cellArray[i,j].isAlive)
+                    if (cellArray[i,j].IsAlive)
                     {
                         Console.Write("+ ");
                     }
@@ -81,7 +81,7 @@ namespace CellularAutomaton
                 {
                     for (int j = 0; j < cellArray.GetLength(1); j++)
                     {
-                        auxiliaryArray[i, j] = cellArray[i, j].isAlive;
+                        auxiliaryArray[i, j] = cellArray[i, j].IsAlive;
                     }
                 }
 
@@ -103,7 +103,7 @@ namespace CellularAutomaton
                 {
                     for (int j = 0; j < cellArray.GetLength(1); j++)
                     {
-                        if (cellArray[i, j].isAlive)
+                        if (cellArray[i, j].IsAlive)
                         {
                             Console.Write("+ ");
                         }

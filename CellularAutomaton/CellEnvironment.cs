@@ -43,18 +43,18 @@ namespace CellularAutomaton
             Cell newCell = cell;
 
             //feeding the cell and revive if possible 
-            if (food && newCell.hunger < 2)
+            if (food && newCell.Hunger < 2)
             {
-                newCell.hunger++;
-                newCell.isAlive = true;
+                newCell.Hunger++;
+                newCell.IsAlive = true;
             }
-            else if (!food) newCell.hunger--;
+            else if (!food) newCell.Hunger--;
 
             //if hunger variable reach 0 program should kill the cell
-            if(newCell.hunger < 1)
+            if(newCell.Hunger < 1)
             {
-                newCell.isAlive = false;
-                newCell.hunger = 0;
+                newCell.IsAlive = false;
+                newCell.Hunger = 0;
             }
 
             return newCell;
