@@ -11,10 +11,13 @@ namespace CellularAutomaton
     class Cell
     {
         //hunger variable determines when the cell will die
-        public int Hunger { get; set; }
+        public int FatTissue { get; set; }
         //TODO in future cells will be divided into many species with different attributes
         public string Species { get; set; }
         //isAlive boolean checks if cell is alive (surprising, isn't it?)
         public bool IsAlive { get; set; }
+        //we have to define if the cell is predator or herbivore
+        public bool IsPredator { get; set; }
+        public bool IsHerbivore { get; set; }
     }
 }

@@ -9,55 +9,148 @@ namespace CellularAutomaton
     //Environment provides food for cells and allows program to check other environmental attributes 
     class CellEnvironment
     {
-        //function checks how much food is available for the cell
-        public bool AvailableFood(bool[,] feedingArray, int x_position, int y_position)
+        //Feeding function returns new cell with changed parameters 
+        public Cell Feeding(Cell cell, bool food, bool predatorCheck)
         {
-            //how many neighbors the cell have? 
-            int neighbors = 0;
+            Cell newCell = cell;
+
+            if (newCell.IsHerbivore)
+            {
+                //feeding the cell and revive if possible 
+                if (food & newCell.FatTissue < 3)
+                {
+                    newCell.FatTissue++;
+                    newCell.IsAlive = true;
+                }
+                else if (!food & !predatorCheck)
+                {
+                    newCell.FatTissue--;
+                }
+                else if (food & predatorCheck)
+                {
+                    newCell.IsAlive = true;
+                    newCell.FatTissue = 1;
+                    newCell.IsHerbivore = false;
+                    newCell.IsPredator = true;
+                    return newCell;
+                }
+
+                //if hunger variable reach 0 program should kill the cell
+                if (newCell.FatTissue < 1)
+                {
+                    newCell.IsAlive = false;
+                    newCell.FatTissue = 0;
+                    newCell.IsHerbivore = false;
+                }
+                return newCell;
+            }
+
+            if (newCell.IsPredator)
+            {
+                //feeding the cell and revive if possible 
+                if (food & newCell.FatTissue < 3)
+                {
+                    newCell.FatTissue++;
+                    newCell.IsAlive = true;
+                }
+                else if (!food) newCell.FatTissue--;
+
+                //if hunger variable reach 0 program should kill the cell
+                if (newCell.FatTissue < 1)
+                {
+                    newCell.IsAlive = false;
+                    newCell.FatTissue = 0;
+                    newCell.IsPredator = false;
+                }
+                return newCell;
+            }
+
+            else
+            {
+                //feeding the cell and revive if possible 
+                if (food)
+                {
+                    newCell.FatTissue++;
+                    newCell.IsAlive = true;
+                    if (predatorCheck)
+                        newCell.IsPredator = true;
+                    else
+                        newCell.IsHerbivore = true;
+                    return newCell;
+                }
+                else
+                {
+                    newCell.IsAlive = false;
+                    newCell.IsHerbivore = false;
+                    newCell.IsPredator = false;
+                    newCell.FatTissue = 0;
+                    return newCell;
+                }
+            }
+        }
+
+        //TODO unite both AvailableFood... functions
+
+        //function checks how much food is available for the herbivore cell
+        public bool AvailableFoodForHerbivore(bool[,] herbivoreArray, bool[,] predatorArray, int x_position, int y_position)
+        {
+            //how many herbivore neighbors the cell have? 
+            int herbivores = 0;
 
             for (int i = x_position - 1; i <= x_position + 1; i++)
             {
                 for (int j = y_position - 1; j <= y_position + 1; j++)
                 {
-                    if (i != x_position || j != y_position)
-                    {
-                        try
-                        {
-                            if (feedingArray[i, j]) neighbors++;
-                        }
-                        catch
-                        {
-                            continue;
-                        }
-                    }
+                    try { if (herbivoreArray[i, j]) herbivores++; }
+                    catch { continue; }
                 }
             }
 
-            if (neighbors == 3) return true;
+            //how many predator neighbors the cell have? 
+            int predators = 0;
+
+            for (int i = x_position - 1; i <= x_position + 1; i++)
+            {
+                for (int j = y_position - 1; j <= y_position + 1; j++)
+                {
+                    try { if (predatorArray[i, j]) predators++; }
+                    catch { continue; }
+                }
+            }
+
+            if (herbivores > 0 & herbivores + predators < 4) return true;
             else return false;
         }
 
-        //Feeding function returns new cell with changed parameters 
-        public Cell Feeding(Cell cell, bool food)
+        //function checks how much food is available for the predator cell
+        public bool AvailableFoodForPredator(bool[,] herbivoreArray, bool[,] predatorArray, int x_position, int y_position)
         {
-            Cell newCell = cell;
+            //how many herbivore neighbors the cell have? 
+            int herbivores = 0;
 
-            //feeding the cell and revive if possible 
-            if (food && newCell.Hunger < 2)
+            for (int i = x_position - 1; i <= x_position + 1; i++)
             {
-                newCell.Hunger++;
-                newCell.IsAlive = true;
-            }
-            else if (!food) newCell.Hunger--;
-
-            //if hunger variable reach 0 program should kill the cell
-            if(newCell.Hunger < 1)
-            {
-                newCell.IsAlive = false;
-                newCell.Hunger = 0;
+                for (int j = y_position - 1; j <= y_position + 1; j++)
+                {
+                     try { if (herbivoreArray[i, j]) herbivores++; }
+                     catch { continue; }
+                }
             }
 
-            return newCell;
+            //how many predator neighbors the cell have? 
+            int predators = 0;
+
+            for (int i = x_position - 1; i <= x_position + 1; i++)
+            {
+                for (int j = y_position - 1; j <= y_position + 1; j++)
+                {
+                    try { if (predatorArray[i, j]) predators++; }
+                    catch { continue; }
+                }
+            }
+
+            if (predators > 0 & predators + herbivores > 3) return true;
+            else return false;
         }
     }
 }

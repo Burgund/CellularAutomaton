@@ -45,8 +45,6 @@
   <ItemGroup>
     <Compile Include="Cell.cs" />
     <Compile Include="CellEnvironment.cs" />
-    <Compile Include="HerbivoreCell.cs" />
-    <Compile Include="PredatorCell.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
