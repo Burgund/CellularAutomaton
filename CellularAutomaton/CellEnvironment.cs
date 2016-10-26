@@ -149,7 +149,7 @@ namespace CellularAutomaton
                 }
             }
 
-            if (predators > 0 & predators + herbivores > 3) return true;
+            if (predators > 0 & herbivores > 0 & predators + herbivores < 6) return true;
             else return false;
         }
     }
