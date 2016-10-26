@@ -17,7 +17,7 @@ namespace CellularAutomaton
             if (newCell.IsHerbivore)
             {
                 //feeding the cell and revive if possible 
-                if (food & newCell.FatTissue < 3)
+                if (food & newCell.FatTissue < 3 & !predatorCheck)
                 {
                     newCell.FatTissue++;
                     newCell.IsAlive = true;
