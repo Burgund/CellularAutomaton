@@ -22,5 +22,19 @@ namespace CellularAutomaton
 
             return arraySize;
         }
+
+        public void WaitInfo()
+        {
+            ClearLine();
+            Console.WriteLine("Loading...");
+            Console.WriteLine("Please wait.");
+        }
+
+        private static void ClearLine()
+        {
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
+        }
     }
 }
