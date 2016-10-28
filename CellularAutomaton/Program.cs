@@ -59,7 +59,6 @@ namespace CellularAutomaton
             }
 
             //Generation 0 cellArray print
-            ui.WaitInfo(0);
             Console.WriteLine("Generation 0:");
             for (int i = 0; i < cellArray.GetLength(0); i++)
             {
@@ -80,7 +79,7 @@ namespace CellularAutomaton
             string nextIteration = "n";
             do
             {
-                ui.WaitInfo(1);
+                ui.WaitInfo();
                 loop++;
                 //we have to count how many herbivores are in the neighborhood
                 bool[,] herbivoreArray = new bool[arraySize, arraySize];
@@ -126,6 +125,7 @@ namespace CellularAutomaton
 
 
                 //cellArray print
+                ui.ClearLine();
                 Console.WriteLine("\nGeneration {0}:", loop);
                 for (int i = 0; i < cellArray.GetLength(0); i++)
                 {
