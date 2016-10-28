@@ -44,7 +44,7 @@ namespace CellularAutomaton
 
             //TODO let the user choose which cells should be alive when program starts
             //now we will use random cells
-            /*
+            
             Random random = new Random();
             for (int i = 0; i < 20; i++)
             {
@@ -63,8 +63,8 @@ namespace CellularAutomaton
                     cellArray[x, y].IsPredator = true;
                 }
             }
-            */
-            //TEST
+            
+            /*TEST
             cellArray[2, 2].FatTissue = 2;
             cellArray[2, 2].IsAlive = true;
             cellArray[2, 2].IsHerbivore = true;
@@ -84,7 +84,7 @@ namespace CellularAutomaton
             cellArray[4, 3].FatTissue = 2;
             cellArray[4, 3].IsAlive = true;
             cellArray[4, 3].IsPredator = true;
-            //THE END OF TEST
+            THE END OF TEST*/
 
             //Generation 0 cellArray print
             Console.WriteLine("Generation 0:");
