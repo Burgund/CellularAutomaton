@@ -16,17 +16,11 @@ namespace CellularAutomaton
         {
             //local variables
             CellEnvironment environment = new CellEnvironment();
+            UserInterface ui = new UserInterface();
             int loop = 0;
 
-            //setting up array size. Try-catch used for prevent FormatException
-            Console.WriteLine("Choose the array size. Write an integer between 8 and 80 and push <enter>.");
-            Console.WriteLine("If you want default size (10) just push<enter>.\nNote: You may want to set up your console window size.");
-            int arraySize = 0;
-            try { arraySize = Int32.Parse(Console.ReadLine()); }
-            catch (FormatException) { }
-            catch { Console.WriteLine("Ops! Something went wrong!"); }
-
-            if (arraySize < 8 || arraySize > 80) arraySize = 10;
+            //setting up array size.
+            int arraySize = ui.Initializer();
 
             Cell[,] cellArray = new Cell[arraySize, arraySize];
             for (int i = 0; i < cellArray.GetLength(0); i++)
@@ -63,28 +57,6 @@ namespace CellularAutomaton
                     cellArray[x, y].IsPredator = true;
                 }
             }
-            
-            /*TEST
-            cellArray[2, 2].FatTissue = 2;
-            cellArray[2, 2].IsAlive = true;
-            cellArray[2, 2].IsHerbivore = true;
-
-            cellArray[2, 3].FatTissue = 2;
-            cellArray[2, 3].IsAlive = true;
-            cellArray[2, 3].IsHerbivore = true;
-
-            cellArray[3, 2].FatTissue = 2;
-            cellArray[3, 2].IsAlive = true;
-            cellArray[3, 2].IsHerbivore = true;
-
-            cellArray[3, 3].FatTissue = 2;
-            cellArray[3, 3].IsAlive = true;
-            cellArray[3, 3].IsHerbivore = true;
-
-            cellArray[4, 3].FatTissue = 2;
-            cellArray[4, 3].IsAlive = true;
-            cellArray[4, 3].IsPredator = true;
-            THE END OF TEST*/
 
             //Generation 0 cellArray print
             Console.WriteLine("Generation 0:");
