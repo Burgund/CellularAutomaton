@@ -23,11 +23,14 @@ namespace CellularAutomaton
             return arraySize;
         }
 
-        public void WaitInfo()
+        public void WaitInfo(int x)
         {
-            ClearLine();
-            Console.WriteLine("Loading...");
-            Console.WriteLine("Please wait.");
+            for (int i = 0; i <= x; i++)
+            {
+                ClearLine();
+            }
+            Console.WriteLine("\nLoading...");
+            Console.WriteLine("Please wait.\n");
         }
 
         private static void ClearLine()

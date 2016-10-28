@@ -59,6 +59,7 @@ namespace CellularAutomaton
             }
 
             //Generation 0 cellArray print
+            ui.WaitInfo(0);
             Console.WriteLine("Generation 0:");
             for (int i = 0; i < cellArray.GetLength(0); i++)
             {
@@ -73,12 +74,13 @@ namespace CellularAutomaton
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine();
+            Console.WriteLine("\n");
 
             //MAIN LOOP -------------------------------------------------------------------
             string nextIteration = "n";
             do
             {
+                ui.WaitInfo(1);
                 loop++;
                 //we have to count how many herbivores are in the neighborhood
                 bool[,] herbivoreArray = new bool[arraySize, arraySize];
@@ -121,7 +123,7 @@ namespace CellularAutomaton
                         cellArray[i, j] = environment.Feeding(cellArray[i, j], environment.AvailableFoodForPredator(herbivoreArray, predatorArray, i, j), true);
                     }
                 }
-                
+
 
                 //cellArray print
                 Console.WriteLine("\nGeneration {0}:", loop);
