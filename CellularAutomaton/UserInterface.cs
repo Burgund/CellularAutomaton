@@ -8,6 +8,7 @@ namespace CellularAutomaton
 {
     class UserInterface
     {
+        //funcion "hello". 
         public int Initializer()
         {
             //setting up array size. Try-catch used for prevent FormatException
@@ -23,6 +24,7 @@ namespace CellularAutomaton
             return arraySize;
         }
 
+        //When program need a while to print next generation, we should calm dawn the user
         public void WaitInfo()
         {
             ClearLine();
@@ -31,10 +33,29 @@ namespace CellularAutomaton
             Console.Write("Please wait.");
         }
 
+        //ask user if he/she want next generation
         public string AskNextIteration()
         {
             Console.WriteLine("\nDo you want next generation? If yes, press <Y> and <Enter>. Otherwise just click <Enter>");
             return Console.ReadLine().ToUpper();
+        }
+
+        //cellArray print
+        public void CellArrayPrint(Cell[,] cellArray)
+        {
+            for (int i = 0; i < cellArray.GetLength(0); i++)
+            {
+                for (int j = 0; j < cellArray.GetLength(1); j++)
+                {
+                    if (cellArray[i, j].IsAlive & cellArray[i, j].IsPredator)
+                        Console.Write("P ");
+                    else if (cellArray[i, j].IsAlive & cellArray[i, j].IsHerbivore)
+                        Console.Write("H ");
+                    else
+                        Console.Write("- ");
+                }
+                Console.WriteLine();
+            }
         }
 
         public void ClearLine()

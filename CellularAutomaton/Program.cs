@@ -59,19 +59,7 @@ namespace CellularAutomaton
 
             //Generation 0 cellArray print
             Console.WriteLine("Generation 0:");
-            for (int i = 0; i < cellArray.GetLength(0); i++)
-            {
-                for (int j = 0; j < cellArray.GetLength(1); j++)
-                {
-                    if (cellArray[i,j].IsAlive & cellArray[i, j].IsPredator)
-                        Console.Write("P ");
-                    else if (cellArray[i, j].IsAlive & cellArray[i,j].IsHerbivore)
-                        Console.Write("H ");
-                    else
-                        Console.Write("- ");
-                }
-                Console.WriteLine();
-            }
+            ui.CellArrayPrint(cellArray);
             Console.WriteLine("\n");
 
             //MAIN LOOP -------------------------------------------------------------------
@@ -127,19 +115,7 @@ namespace CellularAutomaton
                 //cellArray print
                 ui.ClearLine();
                 Console.WriteLine("\nGeneration {0}:", loop);
-                for (int i = 0; i < cellArray.GetLength(0); i++)
-                {
-                    for (int j = 0; j < cellArray.GetLength(1); j++)
-                    {
-                        if (cellArray[i, j].IsAlive & cellArray[i, j].IsPredator)
-                            Console.Write("P ");
-                        else if (cellArray[i, j].IsAlive & cellArray[i, j].IsHerbivore)
-                            Console.Write("H ");
-                        else
-                            Console.Write("- ");
-                    }
-                    Console.WriteLine();
-                }
+                ui.CellArrayPrint(cellArray);
 
                 nextIteration = ui.AskNextIteration();
             } while (nextIteration == "Y");
