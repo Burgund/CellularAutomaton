@@ -31,6 +31,12 @@ namespace CellularAutomaton
             Console.Write("Please wait.");
         }
 
+        public string AskNextIteration()
+        {
+            Console.WriteLine("\nDo you want next generation? If yes, press <Y> and <Enter>. Otherwise just click <Enter>");
+            return Console.ReadLine().ToUpper();
+        }
+
         public void ClearLine()
         {
             Console.SetCursorPosition(0, Console.CursorTop - 1);

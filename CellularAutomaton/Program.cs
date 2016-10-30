@@ -17,7 +17,6 @@ namespace CellularAutomaton
             //local variables
             CellEnvironment environment = new CellEnvironment();
             UserInterface ui = new UserInterface();
-            int loop = 0;
 
             //setting up array size.
             int arraySize = ui.Initializer();
@@ -77,6 +76,7 @@ namespace CellularAutomaton
 
             //MAIN LOOP -------------------------------------------------------------------
             string nextIteration = "n";
+            int loop = 0;
             do
             {
                 ui.WaitInfo();
@@ -141,9 +141,7 @@ namespace CellularAutomaton
                     Console.WriteLine();
                 }
 
-                Console.WriteLine("\nDo you want next generation? If yes, press <Y> and <Enter>. Otherwise click any key and <Enter>");
-                nextIteration = Console.ReadLine();
-                nextIteration = nextIteration.ToUpper();
+                nextIteration = ui.AskNextIteration();
             } while (nextIteration == "Y");
             //END OF MAIN LOOP ---------------------------------------------------------------
 
