@@ -35,29 +35,63 @@ namespace CellularAutomaton
                 }
             }
 
-            //TODO let the user choose which cells should be alive when program starts
-            //now we will use random cells
-            
-            Random random = new Random();
-            for (int i = 0; i < 20; i++)
+            //let the user choose which cells should be alive when program starts
+            //...or we will just use random cells
+            int randomHandler = ui.WantRandom();
+
+            if (randomHandler == -1)
             {
-                int x = random.Next(arraySize);
-                int y = random.Next(arraySize);
-                if(i % 2 == 0)
+                int[] coordinates = new int[2];
+                //herbivores
+                do {
+                    coordinates = ui.WantNextCell("herbivore");
+                    //we have to check if coordinates are not smaller or bigger then array size
+                    if (coordinates[0] > -1 & coordinates[1] > -1 & coordinates[0] < cellArray.GetLength(0) & coordinates[1] < cellArray.GetLength(0))
+                    {
+                        cellArray[coordinates[0], coordinates[1]].FatTissue = 2;
+                        cellArray[coordinates[0], coordinates[1]].IsAlive = true;
+                        cellArray[coordinates[0], coordinates[1]].IsHerbivore = true;
+                        cellArray[coordinates[0], coordinates[1]].IsPredator = false;
+                    }
+                } while (coordinates[0] > -1);
+                //predators
+                do {
+                    coordinates = ui.WantNextCell("predator");
+                    //we have to check if coordinates are not smaller or bigger then array size
+                    if (coordinates[0] > -1 & coordinates[1] > -1 & coordinates[0] < cellArray.GetLength(0) & coordinates[1] < cellArray.GetLength(0))
+                    {
+                        cellArray[coordinates[0], coordinates[1]].FatTissue = 2;
+                        cellArray[coordinates[0], coordinates[1]].IsAlive = true;
+                        cellArray[coordinates[0], coordinates[1]].IsHerbivore = false;
+                        cellArray[coordinates[0], coordinates[1]].IsPredator = true;
+                    }
+                } while (coordinates[0] > -1);
+            }
+
+            else
+            {
+                Random random = new Random();
+                for (int i = 0; i < randomHandler; i++)
                 {
-                    cellArray[x, y].FatTissue = 2;
-                    cellArray[x, y].IsAlive = true;
-                    cellArray[x, y].IsHerbivore = true;
-                }
-                else
-                {
-                    cellArray[x, y].FatTissue = 2;
-                    cellArray[x, y].IsAlive = true;
-                    cellArray[x, y].IsPredator = true;
+                    int x = random.Next(arraySize);
+                    int y = random.Next(arraySize);
+                    if (i % 2 == 0)
+                    {
+                        cellArray[x, y].FatTissue = 2;
+                        cellArray[x, y].IsAlive = true;
+                        cellArray[x, y].IsHerbivore = true;
+                    }
+                    else
+                    {
+                        cellArray[x, y].FatTissue = 2;
+                        cellArray[x, y].IsAlive = true;
+                        cellArray[x, y].IsPredator = true;
+                    }
                 }
             }
 
             //Generation 0 cellArray print
+            Console.Clear();
             Console.WriteLine("Generation 0:");
             ui.CellArrayPrint(cellArray);
             Console.WriteLine("\n");

@@ -58,6 +58,58 @@ namespace CellularAutomaton
             }
         }
 
+        //set up cells
+        public int WantRandom()
+        {
+            string answer = " ";
+            Console.WriteLine("Do you want random cells('r') or you prefer to set up cells by yourself?");
+            Console.WriteLine("write 'r' and <enter> if you want random set up. Otherwise just click <enter>");
+            answer = Console.ReadLine().ToUpper();
+
+            if(answer == "R")
+            {
+                Console.WriteLine("How many random tries do you want?");
+                int x = 10;
+                try
+                {
+                    x = Int32.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Wrong number!");
+                }
+                return x;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        //Ask user if next herbivore/predator should be set up
+        public int[] WantNextCell(string cell)
+        {
+            int[] tab = new int[2];
+            Console.WriteLine("Do you want new " + cell + " cell? Write <y> and confirm <enter> if yes, otherwise just click <enter>");
+            string answer = Console.ReadLine().ToUpper();
+
+            if (answer == "Y")
+            {
+                Console.WriteLine("You have to set up coordinates for new cell");
+                Console.WriteLine("Set x value: ");
+                tab[0] = Int32.Parse(Console.ReadLine());
+                Console.WriteLine("Set y value: ");
+                tab[1] = Int32.Parse(Console.ReadLine());
+                return tab;
+            }
+            else
+            {
+                tab[0] = -1;
+                tab[1] = -1;
+                return tab;
+            }
+        }
+
         public void ClearLine()
         {
             Console.SetCursorPosition(0, Console.CursorTop - 1);
