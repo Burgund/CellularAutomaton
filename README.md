@@ -1,6 +1,6 @@
 # CellularAutomaton
 
-Cellular Automaton will be a console cellular automaton which allows user to choose the size of array and define many types of cells (for example might be a simulation with predators, herbivores and plants).
+CellularAutomaton is a console cellular automaton which allows user to choose the size of an array and define where (and how many) herbivores and predators should appear
 
 # Possibilities
 
